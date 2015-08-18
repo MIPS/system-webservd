@@ -1,0 +1,5 @@
+service webservd /system/bin/webservd --noipv6
+    class main
+    user root
+    group system dbus inet
+    seclabel u:r:brillo:s0
