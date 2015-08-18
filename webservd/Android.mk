@@ -60,9 +60,9 @@ LOCAL_MODULE_CLASS := ETC
 LOCAL_MODULE_PATH := $(PRODUCT_OUT)/$(TARGET_COPY_OUT_INITRCD)
 
 include $(BUILD_SYSTEM)/base_rules.mk
-my_args := --noipv6
-my_groups := inet
 .PHONY: $(LOCAL_BUILT_MODULE)
+$(LOCAL_BUILT_MODULE): my_args := --noipv6
+$(LOCAL_BUILT_MODULE): my_groups := inet
 $(LOCAL_BUILT_MODULE): $(INITRC_TEMPLATE)
 	$(call generate-initrc-file,webservd,$(my_args),$(my_groups))
 endif
