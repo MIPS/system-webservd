@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+ifeq ($(HOST_OS),linux)
+
 webservd_root := $(my-dir)
 
 # Definitions applying to all targets. $(eval) this last.
@@ -48,3 +50,5 @@ define webservd_common
 endef
 
 include $(call all-subdir-makefiles)
+
+endif # HOST_OS == linux
