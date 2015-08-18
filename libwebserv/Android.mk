@@ -1,4 +1,3 @@
-#!/bin/bash
 #
 # Copyright 2015 The Android Open Source Project
 #
@@ -13,14 +12,24 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 
-set -e
+LOCAL_PATH := $(my-dir)
 
-OUT=$1
-v=$2
+# libwebserv shared library
+# ========================================================
 
-deps=$(<"${OUT}"/gen/libwebserv-${v}-deps.txt)
-sed \
-  -e "s/@BSLOT@/${v}/g" \
-  -e "s/@PRIVATE_PC@/${deps}/g" \
-  "libwebserv/libwebserv.pc.in" > "${OUT}/lib/libwebserv-${v}.pc"
+include $(CLEAR_VARS)
+LOCAL_MODULE := libwebserv
+LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
+# TODO: Add dbus_bindings/org.chromium.WebServer.RequestHandler.dbus.xml once
+# code generation is working.
+LOCAL_SRC_FILES := \
+    protocol_handler.cc \
+    request.cc \
+    request_handler_callback.cc \
+    response.cc \
+    server.cc \
+
+$(eval $(webservd_common))
+include $(BUILD_SHARED_LIBRARY)
