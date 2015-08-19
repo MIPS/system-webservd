@@ -24,9 +24,9 @@ LOCAL_PATH := $(my-dir)
 include $(CLEAR_VARS)
 LOCAL_MODULE := webservd
 LOCAL_REQUIRED_MODULES := init.webservd.rc
-# TODO: Add firewalld-client once code generation is working.
 LOCAL_SHARED_LIBRARIES := \
     libcrypto \
+    libfirewalld-client \
     libwebserv \
 
 # TODO: Add the following once code generation is working:
