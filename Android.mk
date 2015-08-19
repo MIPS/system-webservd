@@ -23,7 +23,6 @@ define webservd_common
   LOCAL_CPP_EXTENSION := .cc
   LOCAL_RTTI_FLAG := -frtti
   LOCAL_CFLAGS += \
-    -D__BRILLO__ \
     -Wno-missing-field-initializers \
     -Wno-unused-parameter \
 
