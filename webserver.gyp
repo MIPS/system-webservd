@@ -17,7 +17,7 @@
         # get tied to some constant service name, since it will be
         # provided by the consumer of libwebserv library.
         'dbus_service_config': '',
-        'dbus_adaptors_out_dir': 'include/libwebserv',
+        'dbus_adaptors_out_dir': 'include/dbus_bindings',
       },
       # This static library is used in libwebserv shared library, which means
       # we must generate position-independent code for the files comprising
@@ -77,7 +77,7 @@
           'openssl',
         ],
         'deps': ['<@(exported_deps)'],
-        'dbus_adaptors_out_dir': 'include/webservd',
+        'dbus_adaptors_out_dir': 'include/dbus_bindings',
         'dbus_service_config': 'webservd/dbus_bindings/dbus-service-config.json',
       },
       'all_dependent_settings': {

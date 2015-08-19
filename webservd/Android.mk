@@ -28,13 +28,13 @@ LOCAL_SHARED_LIBRARIES := \
     libcrypto \
     libfirewalld-client \
     libwebserv \
+    libwebserv-proxies-internal \
 
-# TODO: Add the following once code generation is working:
-# dbus_bindings/dbus-service-config.json
-# dbus_bindings/org.chromium.WebServer.ProtocolHandler.dbus.xml
-# dbus_bindings/org.chromium.WebServer.Server.dbus.xml
 LOCAL_SRC_FILES := \
     config.cc \
+    dbus_bindings/dbus-service-config.json \
+    dbus_bindings/org.chromium.WebServer.ProtocolHandler.dbus-xml \
+    dbus_bindings/org.chromium.WebServer.Server.dbus-xml \
     dbus_protocol_handler.cc \
     dbus_request_handler.cc \
     error_codes.cc \
@@ -48,6 +48,22 @@ LOCAL_SRC_FILES := \
 
 $(eval $(webservd_common))
 include $(BUILD_EXECUTABLE)
+
+# libwebservd-client-internal shared library
+# ========================================================
+# You do not want to depend on this.  Depend on libwebserv instead.
+# libwebserv abstracts and helps you consume this interface.
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := libwebservd-client-internal
+LOCAL_SRC_FILES := \
+    dbus_bindings/dbus-service-config.json \
+    dbus_bindings/org.chromium.WebServer.ProtocolHandler.dbus-xml \
+    dbus_bindings/org.chromium.WebServer.Server.dbus-xml \
+
+LOCAL_DBUS_PROXY_PREFIX := webservd
+include $(BUILD_SHARED_LIBRARY)
+
 
 # init.webservd.rc script
 # ========================================================

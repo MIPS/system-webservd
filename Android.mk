@@ -31,10 +31,8 @@ define webservd_common
   # 'std::__1::vector<unsigned char>'" error when building with GCC.
   LOCAL_CLANG := true
 
-  # TODO: Remove "gen" directory once D-Bus code generation is working.
   LOCAL_C_INCLUDES += \
     $(webservd_root) \
-    $(webservd_root)/gen \
     external/gtest/include \
 
   LOCAL_SHARED_LIBRARIES += \

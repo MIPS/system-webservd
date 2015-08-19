@@ -22,9 +22,9 @@ LOCAL_PATH := $(my-dir)
 include $(CLEAR_VARS)
 LOCAL_MODULE := libwebserv
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)/..
-# TODO: Add dbus_bindings/org.chromium.WebServer.RequestHandler.dbus.xml once
-# code generation is working.
+LOCAL_SHARED_LIBRARIES := libwebservd-client-internal
 LOCAL_SRC_FILES := \
+    dbus_bindings/org.chromium.WebServer.RequestHandler.dbus-xml \
     protocol_handler.cc \
     request.cc \
     request_handler_callback.cc \
@@ -32,4 +32,17 @@ LOCAL_SRC_FILES := \
     server.cc \
 
 $(eval $(webservd_common))
+include $(BUILD_SHARED_LIBRARY)
+
+# libwebserv-proxies-internal shared library
+# ========================================================
+# You do not want to depend on this.  Depend on libwebserv instead.
+# libwebserv abstracts and helps you consume this interface.
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := libwebserv-proxies-internal
+LOCAL_SRC_FILES := \
+    dbus_bindings/org.chromium.WebServer.RequestHandler.dbus-xml \
+
+LOCAL_DBUS_PROXY_PREFIX := libwebserv
 include $(BUILD_SHARED_LIBRARY)
