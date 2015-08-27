@@ -67,15 +67,18 @@ include $(BUILD_SHARED_LIBRARY)
 
 # init.webservd.rc script
 # ========================================================
-
-# TODO: Switch back to the template once webservd doesn't need to run as root in
-# order to bind to port 80.
 ifdef INITRC_TEMPLATE
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := init.webservd.rc
 LOCAL_MODULE_CLASS := ETC
 LOCAL_MODULE_PATH := $(PRODUCT_OUT)/$(TARGET_COPY_OUT_INITRCD)
-LOCAL_SRC_FILES := init.webservd.rc
-include $(BUILD_PREBUILT)
+
+include $(BUILD_SYSTEM)/base_rules.mk
+
+.PHONY: $(LOCAL_BUILT_MODULE)
+$(LOCAL_BUILT_MODULE): my_args := --noipv6
+$(LOCAL_BUILT_MODULE): my_groups := inet
+$(LOCAL_BUILT_MODULE): $(INITRC_TEMPLATE)
+	$(call generate-initrc-file,webservd,$(my_args),$(my_groups))
 endif
