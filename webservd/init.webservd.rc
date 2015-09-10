@@ -1,0 +1,8 @@
+on boot
+    mkdir /data/misc/webservd 0700 system system
+    mkdir /data/misc/webservd/logs 0700 system system
+
+service webservd /system/bin/webservd
+    class late_start
+    user system
+    group system dbus inet

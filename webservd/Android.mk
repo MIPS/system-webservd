@@ -23,7 +23,6 @@ LOCAL_PATH := $(my-dir)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := webservd
-LOCAL_REQUIRED_MODULES := init.webservd.rc
 LOCAL_SHARED_LIBRARIES := \
     libcrypto \
     libfirewalld-client \
@@ -46,6 +45,8 @@ LOCAL_SRC_FILES := \
     server.cc \
     utils.cc \
 
+LOCAL_INIT_RC := init.webservd.rc
+
 $(eval $(webservd_common))
 include $(BUILD_EXECUTABLE)
 
@@ -63,22 +64,3 @@ LOCAL_SRC_FILES := \
 
 LOCAL_DBUS_PROXY_PREFIX := webservd
 include $(BUILD_SHARED_LIBRARY)
-
-
-# init.webservd.rc script
-# ========================================================
-ifdef INITRC_TEMPLATE
-include $(CLEAR_VARS)
-
-LOCAL_MODULE := init.webservd.rc
-LOCAL_MODULE_CLASS := ETC
-LOCAL_MODULE_PATH := $(PRODUCT_OUT)/$(TARGET_COPY_OUT_INITRCD)
-
-include $(BUILD_SYSTEM)/base_rules.mk
-
-.PHONY: $(LOCAL_BUILT_MODULE)
-$(LOCAL_BUILT_MODULE): my_args := --noipv6
-$(LOCAL_BUILT_MODULE): my_groups := inet
-$(LOCAL_BUILT_MODULE): $(INITRC_TEMPLATE)
-	$(call generate-initrc-file,webservd,$(my_args),$(my_groups))
-endif
