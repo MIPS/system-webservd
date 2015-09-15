@@ -37,6 +37,7 @@ LOCAL_SRC_FILES := \
     dbus_protocol_handler.cc \
     dbus_request_handler.cc \
     error_codes.cc \
+    fake_encryptor.cc \
     firewalld_firewall.cc \
     log_manager.cc \
     main.cc \
