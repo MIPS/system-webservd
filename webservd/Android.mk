@@ -44,6 +44,7 @@ LOCAL_SRC_FILES := \
     protocol_handler.cc \
     request.cc \
     server.cc \
+    temp_file_manager.cc \
     utils.cc \
 
 LOCAL_INIT_RC := init.webservd.rc

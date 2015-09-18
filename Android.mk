@@ -41,6 +41,7 @@ define webservd_common
       libchromeos \
       libchromeos-dbus \
       libchromeos-http \
+      libchromeos-stream \
       libdbus \
       libmicrohttpd \
 
