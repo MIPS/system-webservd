@@ -28,6 +28,7 @@ LOCAL_SRC_FILES := \
     protocol_handler.cc \
     request.cc \
     request_handler_callback.cc \
+    request_utils.cc \
     response.cc \
     server.cc \
 
