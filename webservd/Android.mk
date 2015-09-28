@@ -47,7 +47,7 @@ LOCAL_SRC_FILES := \
     temp_file_manager.cc \
     utils.cc \
 
-LOCAL_INIT_RC := init.webservd.rc
+LOCAL_INIT_RC := webservd.rc
 
 $(eval $(webservd_common))
 include $(BUILD_EXECUTABLE)
