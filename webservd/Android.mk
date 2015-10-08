@@ -29,6 +29,14 @@ LOCAL_SHARED_LIBRARIES := \
     libwebserv \
     libwebserv-proxies-internal \
 
+ifdef BRILLO
+
+LOCAL_SHARED_LIBRARIES += \
+    libkeymaster_messages \
+    libkeystore_binder \
+
+endif
+
 LOCAL_SRC_FILES := \
     config.cc \
     dbus_bindings/dbus-service-config.json \
@@ -37,7 +45,6 @@ LOCAL_SRC_FILES := \
     dbus_protocol_handler.cc \
     dbus_request_handler.cc \
     error_codes.cc \
-    fake_encryptor.cc \
     firewalld_firewall.cc \
     log_manager.cc \
     main.cc \
@@ -46,6 +53,12 @@ LOCAL_SRC_FILES := \
     server.cc \
     temp_file_manager.cc \
     utils.cc \
+
+ifdef BRILLO
+LOCAL_SRC_FILES += keystore_encryptor.cc
+else
+LOCAL_SRC_FILES += fake_encryptor.cc
+endif
 
 LOCAL_INIT_RC := webservd.rc
 
