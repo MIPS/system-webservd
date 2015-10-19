@@ -54,11 +54,11 @@ LOCAL_SRC_FILES := \
     temp_file_manager.cc \
     utils.cc \
 
-#ifdef BRILLO
-#LOCAL_SRC_FILES += keystore_encryptor.cc
-#else
+ifdef BRILLO
+LOCAL_SRC_FILES += keystore_encryptor.cc
+else
 LOCAL_SRC_FILES += fake_encryptor.cc
-#endif
+endif
 
 LOCAL_INIT_RC := webservd.rc
 
