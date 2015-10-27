@@ -24,7 +24,7 @@ define webservd_common
     -Wno-missing-field-initializers \
     -Wno-unused-parameter \
 
-  # libchromeos's secure_blob.h calls "using Blob::vector" to expose its base
+  # libbrillo's secure_blob.h calls "using Blob::vector" to expose its base
   # class's constructors. This causes a "conflicts with version inherited from
   # 'std::__1::vector<unsigned char>'" error when building with GCC.
   LOCAL_CLANG := true
@@ -34,12 +34,12 @@ define webservd_common
     external/gtest/include \
 
   LOCAL_SHARED_LIBRARIES += \
+      libbrillo \
+      libbrillo-dbus \
+      libbrillo-http \
+      libbrillo-stream \
       libchrome \
       libchrome-dbus \
-      libchromeos \
-      libchromeos-dbus \
-      libchromeos-http \
-      libchromeos-stream \
       libdbus \
       libmicrohttpd \
 
