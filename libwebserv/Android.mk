@@ -25,6 +25,7 @@ LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)/..
 LOCAL_SHARED_LIBRARIES := libwebservd-client-internal
 LOCAL_SRC_FILES := \
     dbus_bindings/org.chromium.WebServer.RequestHandler.dbus-xml \
+    dbus_server.cc \
     protocol_handler.cc \
     request.cc \
     request_handler_callback.cc \
