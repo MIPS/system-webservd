@@ -19,7 +19,6 @@ webservd_root := $(my-dir)
 # Definitions applying to all targets. $(eval) this last.
 define webservd_common
   LOCAL_CPP_EXTENSION := .cc
-  LOCAL_RTTI_FLAG := -frtti
   LOCAL_CFLAGS += \
     -Wno-missing-field-initializers \
     -Wno-unused-parameter \
