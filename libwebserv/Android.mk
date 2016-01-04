@@ -35,6 +35,7 @@ LOCAL_SRC_FILES := \
     server.cc \
 
 $(eval $(webservd_common))
+$(eval $(webservd_common_libraries))
 include $(BUILD_SHARED_LIBRARY)
 
 # libwebserv-proxies-internal shared library
