@@ -19,9 +19,7 @@ webservd_root := $(my-dir)
 # Definitions applying to all targets. $(eval) this last.
 define webservd_common
   LOCAL_CPP_EXTENSION := .cc
-  LOCAL_CFLAGS += \
-    -Wno-missing-field-initializers \
-    -Wno-unused-parameter \
+  LOCAL_CFLAGS += -Wall -Werror
 
   # libbrillo's secure_blob.h calls "using Blob::vector" to expose its base
   # class's constructors. This causes a "conflicts with version inherited from
