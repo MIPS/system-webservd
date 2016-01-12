@@ -71,6 +71,7 @@ include $(BUILD_EXECUTABLE)
 # You do not want to depend on this.  Depend on libwebserv instead.
 # libwebserv abstracts and helps you consume this interface.
 
+ifeq ($(system_webservd_use_dbus),true)
 include $(CLEAR_VARS)
 LOCAL_MODULE := libwebservd-client-internal
 LOCAL_SRC_FILES := \
@@ -80,3 +81,4 @@ LOCAL_SRC_FILES := \
 
 LOCAL_DBUS_PROXY_PREFIX := webservd
 include $(BUILD_SHARED_LIBRARY)
+endif
