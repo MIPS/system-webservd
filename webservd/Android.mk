@@ -63,6 +63,7 @@ endif
 LOCAL_INIT_RC := webservd.rc
 
 $(eval $(webservd_common))
+$(eval $(webservd_common_libraries))
 include $(BUILD_EXECUTABLE)
 
 # libwebservd-client-internal shared library
